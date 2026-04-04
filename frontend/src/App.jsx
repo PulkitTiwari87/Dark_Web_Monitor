@@ -3,7 +3,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Activity, ShieldAlert, Database, Users, Upload, LogOut, FileSearch, CheckCircle, FileText, Lock, User } from 'lucide-react';
 import axios from 'axios';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
+import LandingView from './LandingView';
 
 const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:8000';
 
@@ -63,25 +64,26 @@ const AuthView = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="flex-1 flex justify-center items-center p-8 bg-cyber-dark relative overflow-hidden">
+    <div className="min-h-screen w-full flex justify-center items-center p-8 bg-[#060608] relative overflow-hidden">
       {/* High-End Animated Cyber/Dark Web Background */}
-      <div className="absolute inset-0 z-0 bg-[#050505] overflow-hidden">
-        {/* Animated Grid Lines */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_10%,transparent_100%)] animate-[pulse_4s_ease-in-out_infinite]"></div>
+      <div className="absolute inset-0 z-0 bg-[#060608] overflow-hidden">
         
-        {/* Spooky Glowing Nodes */}
-        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-red-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-[spin_10s_linear_infinite]"></div>
-        <div className="absolute top-[40%] right-[10%] w-[300px] h-[300px] bg-cyan-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-[spin_12s_linear_infinite_reverse]"></div>
-        <div className="absolute -bottom-[20%] left-[40%] w-[500px] h-[500px] bg-purple-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 animate-[pulse_6s_ease-in-out_infinite]"></div>
+        {/* Ominous Neon Glowing Nodes */}
+        <div className="absolute top-[5%] left-[15%] w-[500px] h-[500px] bg-red-600 rounded-full filter blur-[160px] opacity-30 animate-pulse"></div>
+        <div className="absolute top-[30%] right-[10%] w-[400px] h-[400px] bg-cyan-600 rounded-full filter blur-[160px] opacity-20 animate-[pulse_6s_ease-in-out_infinite]"></div>
+        <div className="absolute -bottom-[20%] left-[30%] w-[600px] h-[600px] bg-purple-900 rounded-full filter blur-[160px] opacity-40 animate-[pulse_8s_ease-in-out_infinite]"></div>
         
-        {/* Vignette overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-[#020202] opacity-90"></div>
+        {/* CRT Scanline Effect Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.4)_50%)] bg-[length:100%_4px] pointer-events-none z-10 opacity-70"></div>
+        
+        {/* Hacking Terminal Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.15)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_10%,transparent_100%)] animate-[pulse_4s_ease-in-out_infinite]"></div>
       </div>
 
-      <div className="glass-panel p-10 w-full max-w-md z-10 relative border-t-2 border-t-red-600 shadow-[0_0_80px_rgba(255,0,0,0.15)] bg-black/60 backdrop-blur-xl">
+      <div className="glass-panel p-10 w-full max-w-md z-20 relative border-t-2 border-t-red-600 shadow-[0_0_80px_rgba(255,0,0,0.2)] bg-black/70 backdrop-blur-2xl">
         <div className="flex items-center justify-center space-x-3 mb-8">
-          <ShieldAlert className="text-cyber-accent drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]" size={40} />
-          <h1 className="text-3xl font-bold tracking-wider text-cyber-accent text-shadow-glow">DARK</h1>
+          <ShieldAlert className="text-cyber-accent drop-shadow-[0_0_15px_rgba(0,240,255,0.8)] animate-pulse" size={45} />
+          <h1 className="text-4xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-cyber-accent text-shadow-glow">DARK</h1>
         </div>
 
         <h2 className="text-xl text-center text-gray-300 mb-8">{isLogin ? 'Analyst Login Portal' : 'Register New Operative'}</h2>
@@ -259,7 +261,7 @@ const DashboardView = ({ stats, alerts, chartData, loading, generatePDF }) => (
         </div>
       </div>
       
-      <div className="glass-panel p-6 flex flex-col h-full">
+      <div className="glass-panel p-6 flex flex-col h-full col-span-1">
         <h3 className="text-xl font-bold mb-6 flex-shrink-0">Recent Critical Alerts</h3>
         <div className="space-y-4 overflow-y-auto flex-1 pr-2">
           {alerts.length === 0 && !loading ? (
@@ -281,6 +283,29 @@ const DashboardView = ({ stats, alerts, chartData, loading, generatePDF }) => (
           )}
         </div>
       </div>
+    </div>
+    
+    {/* Defense Recommendations */}
+    <div className="mt-6 glass-panel p-6 border-l-4 border-blue-500">
+       <h3 className="text-xl font-bold mb-4 flex items-center gap-2"><ShieldAlert size={24} className="text-blue-500"/> Proactive Defense Recommendations</h3>
+       <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-gray-800/50 p-4 rounded text-sm text-gray-300">
+             <strong className="text-white block mb-1">Credential Rotation:</strong>
+             If compromised VIP credentials are found, immediately force a global password reset for those accounts and enable hardware MFA.
+          </div>
+          <div className="bg-gray-800/50 p-4 rounded text-sm text-gray-300">
+             <strong className="text-white block mb-1">Firewall Rule Updates:</strong>
+             Block all inbound/outbound communication to IP addresses flagged in recent Critical botnet chatter alerts via your edge WAF.
+          </div>
+          <div className="bg-gray-800/50 p-4 rounded text-sm text-gray-300">
+             <strong className="text-white block mb-1">Patch Management:</strong>
+             Monitor Dark Web chatter for Zero-Day sales (like high-value Exploits). Ensure immediate deployment of out-of-cycle patches for related software.
+          </div>
+          <div className="bg-gray-800/50 p-4 rounded text-sm text-gray-300">
+             <strong className="text-white block mb-1">Cloud Bucket Audits:</strong>
+             Threat actors are actively hunting for open AWS S3 misconfigurations. Use automated CSPM tools to lockdown public buckets.
+          </div>
+       </div>
     </div>
   </main>
 );
@@ -472,6 +497,7 @@ const ProfileView = ({ token, onLogout }) => {
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [stats, setStats] = useState({ total_intel: 0, critical_alerts: 0, total_leaks: 0 });
   const [alerts, setAlerts] = useState([]);
@@ -531,67 +557,134 @@ const App = () => {
   const generatePDFReport = () => {
     const doc = new jsPDF();
     
-    // Title
-    doc.setFontSize(22);
-    doc.setTextColor(0, 240, 255); // Cyber Accent Hex: 00f0ff approx
-    doc.text('DARK CYBER THREAT REPORT', 14, 20);
+    // Header Banner (Dark Grey Background)
+    doc.setFillColor(15, 15, 20);
+    doc.rect(0, 0, 210, 40, 'F');
     
-    // Separator line
-    doc.setLineWidth(0.5);
-    doc.setDrawColor(200, 200, 200);
-    doc.line(14, 25, 196, 25);
-
-    // Meta-data
+    // Logo Text "DARK"
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(28);
+    doc.setTextColor(0, 240, 255); // Neon Cyan
+    doc.text('DARK', 14, 25);
+    
+    // Subtitle
+    doc.setFontSize(12);
+    doc.setTextColor(200, 200, 200);
+    doc.setFont("helvetica", "normal");
+    doc.text('CYBER THREAT INTELLIGENCE REPORT', 52, 24);
+    
+    // Confidential Tag
     doc.setFontSize(10);
-    doc.setTextColor(50, 50, 50);
-    doc.text(`Generated On: ${new Date().toLocaleString()}`, 14, 32);
-    doc.text(`Total Intelligence Processed: ${stats.total_intel}`, 14, 38);
-    doc.text(`Compromised Credentials Found: ${stats.total_leaks}`, 14, 44);
+    doc.setTextColor(255, 60, 60);
+    doc.setFont("helvetica", "bold");
+    doc.text('CONFIDENTIAL // RESTRICTED', 138, 24);
+
+    // Meta Data Box
+    doc.setFillColor(245, 245, 245);
+    doc.rect(14, 50, 182, 35, 'F');
     
-    doc.setFontSize(14);
-    doc.setTextColor(255, 42, 42); // Critical Red
-    doc.text(`Critical Threats Detected: ${stats.critical_alerts}`, 14, 54);
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont("helvetica", "bold");
+    doc.text('REPORT GENERATION TIMESTMP:', 20, 60);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(20, 20, 20);
+    doc.text(new Date().toLocaleString(), 85, 60);
+    
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(100, 100, 100);
+    doc.text('INTEL RECORDS PROCESSED:', 20, 68);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(20, 20, 20);
+    doc.text(String(stats.total_intel), 85, 68);
+    
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(100, 100, 100);
+    doc.text('COMPROMISED CREDENTIALS:', 20, 76);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(20, 20, 20);
+    doc.text(String(stats.total_leaks), 85, 76);
+
+    // Critical Alerts Banner
+    doc.setFillColor(255, 235, 235);
+    doc.rect(14, 95, 182, 15, 'F');
+    doc.setFontSize(12);
+    doc.setTextColor(255, 42, 42); // Red
+    doc.setFont("helvetica", "bold");
+    doc.text(`CRITICAL THREATS DETECTED: ${stats.critical_alerts}`, 20, 105);
+
+    let finalY = 120;
 
     if (alerts.length > 0) {
       doc.setFontSize(14);
-      doc.setTextColor(0, 0, 0);
-      doc.text('Identified Major Threats / Activity:', 14, 66);
+      doc.setTextColor(30, 30, 30);
+      doc.setFont("helvetica", "bold");
+      doc.text('Intelligence Alert Matrix', 14, finalY);
       
       const tableData = alerts.map(alert => [
-        alert.severity,
+        alert.severity.toUpperCase(),
         alert.title,
-        alert.timestamp ? new Date(alert.timestamp).toLocaleDateString() : 'Present'
+        alert.timestamp ? new Date(alert.timestamp).toLocaleDateString() : 'Active'
       ]);
 
-      doc.autoTable({
-        startY: 70,
-        head: [['Severity', 'Description', 'Date']],
+      autoTable(doc, {
+        startY: finalY + 5,
+        head: [['SEVERITY', 'THREAT DESCRIPTION', 'DETECTED']],
         body: tableData,
-        headStyles: { fillColor: [10, 10, 15] },
-        styles: { fontSize: 10, cellPadding: 3 },
+        headStyles: { fillColor: [15, 15, 20], textColor: [255, 255, 255], fontStyle: 'bold' },
+        styles: { fontSize: 9, cellPadding: 4, font: 'helvetica' },
+        alternateRowStyles: { fillColor: [250, 250, 250] },
         columnStyles: {
-          0: { cellWidth: 30, fontStyle: 'bold' },
+          0: { cellWidth: 35, fontStyle: 'bold' },
           1: { cellWidth: 'auto' },
-          2: { cellWidth: 30 }
+          2: { cellWidth: 35 }
         },
         willDrawCell: function(data) {
           if (data.section === 'body' && data.column.index === 0) {
-             if (data.cell.raw === 'Critical') data.doc.setTextColor(255, 42, 42);
-             else if (data.cell.raw === 'High') data.doc.setTextColor(255, 153, 0);
-             else data.doc.setTextColor(0, 0, 0);
+             if (data.cell.raw === 'CRITICAL') data.doc.setTextColor(255, 42, 42);
+             else if (data.cell.raw === 'HIGH') data.doc.setTextColor(255, 153, 0);
+             else data.doc.setTextColor(50, 50, 50);
           }
         }
       });
+      finalY = doc.lastAutoTable.finalY + 15;
     } else {
-       doc.setFontSize(12);
+       doc.setFontSize(11);
        doc.setTextColor(100, 100, 100);
-       doc.text('No active threats in the database matching Critical criteria.', 14, 70);
+       doc.setFont("helvetica", "italic");
+       doc.text('No active intelligence alerts met export criteria.', 14, finalY);
+       finalY += 15;
     }
 
-    doc.save('DARK_INTEL_REPORT.pdf');
+    // Proactive Defense block
+    doc.setFillColor(235, 245, 255); // Light blue
+    doc.setDrawColor(0, 120, 255);
+    doc.rect(14, finalY, 182, 45, 'FD'); // Fill and Draw border
+    
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(12);
+    doc.setTextColor(0, 80, 200);
+    doc.text('PROACTIVE DEFENSE STRATEGY', 20, finalY + 10);
+    
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(40, 40, 40);
+    doc.text('- CREDENTIAL ROTATION: Implement immediate forced resets for VIP targets found in chatter.', 20, finalY + 20);
+    doc.text('- FIREWALL HARDENING: Blacklist mapped C2 architecture and identified Botnet IP addresses.', 20, finalY + 28);
+    doc.text('- ZERO-DAY PATCHING: Run emergency patching cycles for high-risk software (Exchange, VPNs).', 20, finalY + 36);
+
+    // Footer
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text(`DARK SYSTEMS © ${new Date().getFullYear()} - Intel Report ID: ${Math.random().toString(36).substring(2, 10).toUpperCase()}`, 14, 285);
+
+    doc.save(`DARK_INTEL_REPORT_${new Date().toISOString().slice(0,10)}.pdf`);
   };
 
   if (!isAuthenticated) {
+    if (!showAuth) {
+      return <LandingView onLaunch={() => setShowAuth(true)} />;
+    }
     return <AuthView onLoginSuccess={() => setIsAuthenticated(true)} />;
   }
 

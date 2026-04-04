@@ -3,7 +3,7 @@
     "id": "fp_001",
     "timestamp": "2026-04-01T14:22:00Z",
     "actor": "zer0_dayz",
-    "content": "Looking for fresh RDP access to healthcare companies in EU. Willing to pay 50k for full admin.",
+    "content": "Looking for fresh RDP access to healthcare companies in EU. Willing to pay 50k in BTC or XMR for full admin.",
     "forum": "UndergroundSec",
     "language": "en"
   },
@@ -19,7 +19,7 @@
     "id": "fp_003",
     "timestamp": "2026-04-03T18:45:11Z",
     "actor": "data_broker",
-    "content": "Selling combo lists. 10M records. Validated against major banking sites. PM for details. Also selling zero-day for CVE-2026-0001.",
+    "content": "Selling combo lists. 10M records from latest breaches. Validated against major banking sites. PM for details. Also selling zero-day for CVE-2026-0001.",
     "forum": "CardersHaven",
     "language": "en"
   },
@@ -27,8 +27,32 @@
     "id": "fp_004",
     "timestamp": "2026-04-04T02:00:00Z",
     "actor": "anonymous_ghost",
-    "content": "Can anyone help with bypassing Cloudflare on contoso.com? We have the phishing page ready.",
+    "content": "Can anyone help with bypassing Cloudflare on contoso.com? We have the phishing page ready on 192.168.10.45.",
     "forum": "UndergroundSec",
+    "language": "en"
+  },
+  {
+    "id": "fp_005",
+    "timestamp": "2026-04-04T12:30:15Z",
+    "actor": "APT_29_Clone",
+    "content": "Dumping 50GB of internal documents from standard-bank.co.uk. The CISO forgot to secure their AWS S3 buckets. Send 2 BTC to bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh for the password.",
+    "forum": "RansomBoard",
+    "language": "en"
+  },
+  {
+    "id": "fp_006",
+    "timestamp": "2026-04-05T01:10:00Z",
+    "actor": "bot_herder",
+    "content": "Selling access to 50,000 infected IoT devices. Perfect for DDoS. IPs range from 104.28.1.0 to 104.28.255.255. DM if interested.",
+    "forum": "UndergroundSec",
+    "language": "en"
+  },
+  {
+    "id": "fp_007",
+    "timestamp": "2026-04-05T08:50:22Z",
+    "actor": "phantom_strike",
+    "content": "Need an Initial Access Broker (IAB) for any .gov or .mil site. Budget is unlimited. Payment via Monero (XMR) only.",
+    "forum": "EliteHackers",
     "language": "en"
   }
 ]

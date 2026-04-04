@@ -13,7 +13,7 @@
     "title": "AWS Root Credentials for Logistics Co",
     "vendor": "CloudBreaker",
     "price_usd": 3000,
-    "description": "AWS root access key and secret for a logistics firm. Access to all S3 buckets and EC2 instances.",
+    "description": "AWS root access key and secret for global-logistics.net. Access to all S3 buckets and EC2 instances.",
     "category": "Credentials",
     "timestamp": "2026-03-25T11:00:00Z"
   },
@@ -25,5 +25,23 @@
     "description": "Build your own ransomware with FUD stubs. Includes decryption panel and Bitcoin integration.",
     "category": "Malware",
     "timestamp": "2026-04-01T08:00:00Z"
+  },
+  {
+    "id": "ml_004",
+    "title": "Zero-Day Exploit for Microsoft Exchange",
+    "vendor": "phantom_strike",
+    "price_usd": 150000,
+    "description": "Remote Code Execution (RCE) zero-day for latest Exchange servers. Highly reliable. Escrow only.",
+    "category": "Exploit",
+    "timestamp": "2026-04-04T15:20:00Z"
+  },
+  {
+    "id": "ml_005",
+    "title": "Database Dump of defense.gov Contractors",
+    "vendor": "data_broker",
+    "price_usd": 25000,
+    "description": "Over 200,000 contractor details including social security numbers, physical addresses, and security clearance levels.",
+    "category": "Data Dump",
+    "timestamp": "2026-04-05T06:00:00Z"
   }
 ]

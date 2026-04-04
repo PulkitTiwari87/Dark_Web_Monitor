@@ -1,0 +1,26 @@
+[
+  {
+    "id": "cve_001",
+    "timestamp": "2026-04-05T09:15:00Z",
+    "actor": "exploit_dealer",
+    "content": "Selling fully weaponized PoC for CVE-2026-11882 (Microsoft Word). FUD 0/64. Bypasses Windows Defender. 2 BTC.",
+    "forum": "ExploitHub",
+    "language": "en"
+  },
+  {
+    "id": "cve_002",
+    "timestamp": "2026-04-05T10:45:00Z",
+    "actor": "router_hax",
+    "content": "I dumped a list of 400 vulnerable Cisco VPN endpoints (CVE-2026-9999). Easy initial access for ransomware crews.",
+    "forum": "AccessMarket",
+    "language": "en"
+  },
+  {
+    "id": "cve_003",
+    "timestamp": "2026-04-05T11:20:00Z",
+    "actor": "struts_master",
+    "content": "We have successfully weaponized the Apache Struts bug. Targeting example-corp.com systems tonight. Who has access to their internal Jenkins?",
+    "forum": "EliteHackers",
+    "language": "en"
+  }
+]
