@@ -5,6 +5,8 @@ import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
+const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:8000';
+
 const parseJwt = (token) => {
   try {
     return JSON.parse(atob(token.split('.')[1]));
@@ -31,14 +33,14 @@ const AuthView = ({ onLoginSuccess }) => {
         params.append('username', formData.username);
         params.append('password', formData.password);
         
-        const res = await axios.post('http://127.0.0.1:8000/api/auth/login', params, {
+        const res = await axios.post(`${API_BASE}/api/auth/login`, params, {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
         localStorage.setItem('dark_intel_token', res.data.access_token);
         onLoginSuccess();
       } else {
         // Registration is pure JSON Pydantic Model
-        await axios.post('http://127.0.0.1:8000/api/auth/signup', formData);
+        await axios.post(`${API_BASE}/api/auth/signup`, formData);
         setIsLogin(true);
         setError('Registration successful! Please login.');
       }
@@ -62,11 +64,21 @@ const AuthView = ({ onLoginSuccess }) => {
 
   return (
     <div className="flex-1 flex justify-center items-center p-8 bg-cyber-dark relative overflow-hidden">
-      {/* Background Decorators */}
-      <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] bg-cyber-accent rounded-full blur-[150px] opacity-10"></div>
-      <div className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] bg-cyber-alert rounded-full blur-[150px] opacity-10"></div>
+      {/* High-End Animated Cyber/Dark Web Background */}
+      <div className="absolute inset-0 z-0 bg-[#050505] overflow-hidden">
+        {/* Animated Grid Lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_10%,transparent_100%)] animate-[pulse_4s_ease-in-out_infinite]"></div>
+        
+        {/* Spooky Glowing Nodes */}
+        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-red-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-[spin_10s_linear_infinite]"></div>
+        <div className="absolute top-[40%] right-[10%] w-[300px] h-[300px] bg-cyan-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-[spin_12s_linear_infinite_reverse]"></div>
+        <div className="absolute -bottom-[20%] left-[40%] w-[500px] h-[500px] bg-purple-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 animate-[pulse_6s_ease-in-out_infinite]"></div>
+        
+        {/* Vignette overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-[#020202] opacity-90"></div>
+      </div>
 
-      <div className="glass-panel p-10 w-full max-w-md z-10 relative border-t-4 border-t-cyber-accent shadow-[0_0_50px_rgba(0,240,255,0.1)]">
+      <div className="glass-panel p-10 w-full max-w-md z-10 relative border-t-2 border-t-red-600 shadow-[0_0_80px_rgba(255,0,0,0.15)] bg-black/60 backdrop-blur-xl">
         <div className="flex items-center justify-center space-x-3 mb-8">
           <ShieldAlert className="text-cyber-accent drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]" size={40} />
           <h1 className="text-3xl font-bold tracking-wider text-cyber-accent text-shadow-glow">DARK</h1>
@@ -297,8 +309,8 @@ const IngestionView = ({ token }) => {
     const config = { ...reqConfig, headers: { ...reqConfig.headers, 'Content-Type': 'multipart/form-data' }};
 
     const url = type === 'json' 
-      ? 'http://127.0.0.1:8000/api/ingest/upload/json?source_type=forum'
-      : 'http://127.0.0.1:8000/api/ingest/upload/csv?source_type=credential';
+      ? `${API_BASE}/api/ingest/upload/json?source_type=forum`
+      : `${API_BASE}/api/ingest/upload/csv?source_type=credential`;
 
     try {
       const res = await axios.post(url, formData, config);
@@ -316,8 +328,8 @@ const IngestionView = ({ token }) => {
     setAnalyzing(true);
     setMessage('');
     try {
-      const resForum = await axios.post('http://127.0.0.1:8000/api/analysis/process/chatter', null, reqConfig);
-      const resCreds = await axios.post('http://127.0.0.1:8000/api/analysis/process/credentials', null, reqConfig);
+      const resForum = await axios.post(`${API_BASE}/api/analysis/process/chatter`, null, reqConfig);
+      const resCreds = await axios.post(`${API_BASE}/api/analysis/process/credentials`, null, reqConfig);
       setMessage(`✅ NLP Engine Complete: ${resForum.data.message} ${resCreds.data.message}`);
     } catch (err) {
       setMessage(`❌ Error: ${err.response?.data?.detail || err.message}`);
@@ -482,7 +494,7 @@ const App = () => {
   const fetchDashboardData = async () => {
     if (!isAuthenticated) return;
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/analysis/dashboard/stats');
+      const response = await axios.get(`${API_BASE}/api/analysis/dashboard/stats`);
       const data = response.data;
       
       setStats({
