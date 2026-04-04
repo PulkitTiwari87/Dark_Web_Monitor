@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ml_001",
+    "title": "Full Admin Access to Tech Startup",
+    "vendor": "AdminSeller",
+    "price_usd": 1500,
+    "description": "Offering RDP and VPN access to a mid-sized tech company with 500+ employees. Full network traversal allowed. Includes emails.",
+    "category": "Access",
+    "timestamp": "2026-03-20T10:00:00Z"
+  },
+  {
+    "id": "ml_002",
+    "title": "AWS Root Credentials for Logistics Co",
+    "vendor": "CloudBreaker",
+    "price_usd": 3000,
+    "description": "AWS root access key and secret for a logistics firm. Access to all S3 buckets and EC2 instances.",
+    "category": "Credentials",
+    "timestamp": "2026-03-25T11:00:00Z"
+  },
+  {
+    "id": "ml_003",
+    "title": "Custom Ransomware Builder v3",
+    "vendor": "zer0_dayz",
+    "price_usd": 500,
+    "description": "Build your own ransomware with FUD stubs. Includes decryption panel and Bitcoin integration.",
+    "category": "Malware",
+    "timestamp": "2026-04-01T08:00:00Z"
+  }
+]
